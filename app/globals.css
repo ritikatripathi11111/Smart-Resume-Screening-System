@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 99%;
+    --foreground: 224 31% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 31% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 31% 14%;
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 18% 96%;
+    --secondary-foreground: 224 31% 20%;
+    --muted: 240 16% 95%;
+    --muted-foreground: 224 14% 46%;
+    --accent: 258 90% 66%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 63% 42%;
+    --warning: 38 92% 50%;
+    --border: 240 18% 90%;
+    --input: 240 18% 88%;
+    --ring: 243 75% 59%;
+    --chart-1: 243 75% 59%;
+    --chart-2: 258 90% 66%;
+    --chart-3: 199 89% 48%;
+    --chart-4: 152 63% 45%;
+    --chart-5: 38 92% 55%;
+    --electric: 199 89% 48%;
+    --radius: 0.75rem;
+    --glass-bg: 0 0% 100%;
+    --glass-border: 240 18% 90%;
+  }
+
+  .dark {
+    --background: 224 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 224 38% 9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 38% 9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 243 75% 66%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 30% 14%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 224 30% 14%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 258 90% 70%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 60% 50%;
+    --warning: 38 92% 58%;
+    --border: 224 30% 18%;
+    --input: 224 30% 18%;
+    --ring: 243 75% 66%;
+    --chart-1: 243 75% 66%;
+    --chart-2: 258 90% 70%;
+    --chart-3: 199 89% 55%;
+    --chart-4: 152 60% 55%;
+    --chart-5: 38 92% 60%;
+    --electric: 199 89% 55%;
+    --glass-bg: 224 38% 9%;
+    --glass-border: 224 30% 18%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass {
+    background: hsl(var(--glass-bg) / 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid hsl(var(--glass-border) / 0.6);
+  }
+
+  .glass-strong {
+    background: hsl(var(--glass-bg) / 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid hsl(var(--glass-border) / 0.7);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-electric bg-clip-text text-transparent;
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary to-accent;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 24px hsl(var(--primary) / 0.35);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 24px hsl(var(--accent) / 0.35);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted) / 0.3) 0%,
+      hsl(var(--muted) / 0.6) 50%,
+      hsl(var(--muted) / 0.3) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
